@@ -3,6 +3,7 @@ import { Platform, StyleSheet, Text, View } from "react-native";
 import Header from "./components/Header";
 import Buttons from "./components/Buttons";
 import Joke from "./components/Joke";
+import * as api from "./utils/api";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -18,10 +19,21 @@ export default class App extends Component {
     jokeList: false
   };
   handlePress = () => {
-    this.setState({ singleJoke: true });
+    api.getJoke().then(joke => {
+      this.setState({ joke, singleJoke: true });
+    });
   };
   handleHomePress = () => {
-    this.setState({ singleJoke: false, joke: null, jokeList: false });
+    this.setState({
+      singleJoke: false,
+      joke: null,
+      jokeList: false
+    });
+  };
+  handleSearchPress = (firstName, lastName) => {
+    api.getJoke(firstName, lastName).then(joke => {
+      this.setState({ joke, singleJoke: true, jokeList: false });
+    });
   };
   render() {
     const { singleJoke, joke, jokeList } = this.state;
@@ -32,9 +44,13 @@ export default class App extends Component {
         </View>
         <View style={styles.body}>
           {singleJoke ? (
-            <Joke handleHomePress={this.handleHomePress} />
+            <Joke handleHomePress={this.handleHomePress} joke={joke} />
           ) : (
-            <Buttons handlePress={this.handlePress} />
+            <Buttons
+              handlePress={this.handlePress}
+              handleSearchPress={this.handleSearchPress}
+              handleHomePress={this.handleHomePress}
+            />
           )}
         </View>
       </View>

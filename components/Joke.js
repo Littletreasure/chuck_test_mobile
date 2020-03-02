@@ -6,8 +6,10 @@ const Joke = props => {
     props.handleHomePress();
   };
   return (
-    <View style={styles.joke}>
-      <Text style={styles.jokeText}>This is a joke</Text>
+    <View style={styles.container}>
+      <View style={styles.jokeContainer}>
+        <Text style={styles.jokeText}>{props.joke}</Text>
+      </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.homeButton} onPress={() => onPress()}>
           <Text style={styles.buttonText}>Home</Text>
@@ -18,10 +20,13 @@ const Joke = props => {
 };
 
 const styles = StyleSheet.create({
-  joke: {
+  container: {
     flex: 1,
     flexDirection: "column",
     alignItems: "center"
+  },
+  jokeContainer: {
+    flex: 1
   },
   jokeText: {
     flex: 1,
@@ -29,7 +34,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   buttonContainer: {
-    flex: 4
+    flex: 3
   },
   homeButton: {
     borderColor: "#046ab8",

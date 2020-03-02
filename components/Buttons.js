@@ -1,32 +1,57 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import Search from "./Search";
 
 export default class Buttons extends Component {
   state = {
     clicked: false
   };
+  onPressSearch = () => {
+    this.setState({ clicked: true });
+  };
+  onPressHome = () => {
+    this.setState({ clicked: false });
+    this.props.handleHomePress();
+  };
   render() {
-    const { handlePress } = this.props;
+    const { handlePress, handleSearchPress } = this.props;
     return (
       <View style={styles.container}>
-        <View style={styles.container2}>
-          <Text style={styles.text}>Click here for a random joke</Text>
-          <TouchableOpacity style={styles.button} onPress={() => handlePress()}>
-            <Text style={styles.buttonText}>Random</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.container2}>
-          <Text style={styles.text}>Click here to customize the name</Text>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Search</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.container2}>
-          <Text style={styles.text}>Never-ending joke list</Text>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>List</Text>
-          </TouchableOpacity>
-        </View>
+        {!this.state.clicked ? (
+          <View>
+            <View style={styles.container2}>
+              <Text style={styles.text}>Click here for a random joke</Text>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => handlePress()}
+              >
+                <Text style={styles.buttonText}>Random</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.container2}>
+              <Text style={styles.text}>Click here to customize the name</Text>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.onPressSearch()}
+              >
+                <Text style={styles.buttonText}>Search</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.container2}>
+              <Text style={styles.text}>Never-ending joke list</Text>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>List</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        ) : (
+          <View>
+            <Search
+              onPressHome={this.onPressHome}
+              handleSearchPress={handleSearchPress}
+            />
+          </View>
+        )}
       </View>
     );
   }
