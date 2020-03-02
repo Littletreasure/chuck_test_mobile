@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 export default class Buttons extends Component {
-  state = {};
+  state = {
+    clicked: false
+  };
   render() {
+    const { handlePress } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.container2}>
           <Text style={styles.text}>Click here for a random joke</Text>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => handlePress()}>
             <Text style={styles.buttonText}>Random</Text>
           </TouchableOpacity>
         </View>
@@ -31,7 +34,7 @@ export default class Buttons extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 5,
+    flex: 1,
     flexDirection: "column",
     alignItems: "center",
     paddingTop: 30
