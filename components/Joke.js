@@ -2,16 +2,16 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 const Joke = props => {
-  const onPress = () => {
-    props.handleHomePress();
-  };
   return (
     <View style={styles.container}>
       <View style={styles.jokeContainer}>
         <Text style={styles.jokeText}>{props.joke}</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.homeButton} onPress={() => onPress()}>
+        <TouchableOpacity
+          style={styles.homeButton}
+          onPress={() => props.handleHomePress()}
+        >
           <Text style={styles.buttonText}>Home</Text>
         </TouchableOpacity>
       </View>
@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   jokeContainer: {
-    flex: 1
+    flex: 1,
+    paddingTop: 20
   },
   jokeText: {
     flex: 1,

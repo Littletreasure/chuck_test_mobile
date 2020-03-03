@@ -13,6 +13,10 @@ export default class Buttons extends Component {
     this.setState({ clicked: false });
     this.props.handleHomePress();
   };
+  onPressList = () => {
+    this.setState({ clicked: false });
+    this.props.handleListPress();
+  };
   render() {
     const { handlePress, handleSearchPress } = this.props;
     return (
@@ -39,7 +43,10 @@ export default class Buttons extends Component {
             </View>
             <View style={styles.container2}>
               <Text style={styles.text}>Never-ending joke list</Text>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.onPressList()}
+              >
                 <Text style={styles.buttonText}>List</Text>
               </TouchableOpacity>
             </View>

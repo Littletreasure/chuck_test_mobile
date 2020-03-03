@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     color: "#046ab8"
   },
   errorContainer: {
-    flex: 2
+    flex: 3
   },
   errorText: {
     fontSize: 20,

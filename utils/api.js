@@ -15,7 +15,7 @@ export const getJoke = (firstName, lastName) => {
 export const getJokeList = () => {
   return axios
     .get(
-      "http://api.icndb.com/jokes/random/20?exclude=[explicit]&escape=javascript"
+      "http://api.icndb.com/jokes/random/10?exclude=[explicit]&escape=javascript"
     )
     .then(response => {
       return response.data.value;
