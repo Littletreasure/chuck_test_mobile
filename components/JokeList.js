@@ -52,7 +52,7 @@ export default class JokeList extends Component {
         <View style={styles.jokeListContainer}>
           <FlatList
             data={jokes}
-            keyExtractor={(item, index) => index}
+            keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => (
               <View
                 style={{

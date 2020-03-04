@@ -36,6 +36,9 @@ export default class Search extends Component {
       this.props.handleSearchPress(firstName, lastName);
     }
   };
+  onPressReset = () => {
+    this.setState({ firstName: "", lastName: "", error: false });
+  };
   render() {
     const { firstName, lastName, error } = this.state;
     const { onPressHome } = this.props;
@@ -66,6 +69,9 @@ export default class Search extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={this.onPressReset}>
+            <Text style={styles.buttonText}>Reset</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={onPressHome}>
             <Text style={styles.buttonText}>Home</Text>
           </TouchableOpacity>
@@ -110,7 +116,9 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   buttonContainer: {
-    flex: 1
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "flex-start"
   },
   button: {
     borderColor: "#046ab8",
@@ -118,7 +126,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     paddingVertical: 2,
     borderRadius: 10,
-    marginTop: 30
+    marginTop: 30,
+    marginLeft: 10,
+    marginRight: 10
   },
   buttonText: {
     fontSize: 15,
