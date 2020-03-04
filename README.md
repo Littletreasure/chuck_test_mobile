@@ -20,4 +20,6 @@ Install all dependencies using npm install.
 
 To run the project locally install the [Expo](https://expo.io) app on your phone. To run the app, type expo start and scan the QR code with your camera.
 
+To run the tests type npm test.
+
 You will also need nodeJS version 12.7.0.
